@@ -43,9 +43,13 @@
     transition: all 0.3s;
 }
 
-.applySelections:active{
+.applySelections:active {
     transform: scale(0.90);
     background-color: black;
     border-color: black;
     transition: all 0.3s;
+}
+
+textarea {
+    resize: none;
 }
