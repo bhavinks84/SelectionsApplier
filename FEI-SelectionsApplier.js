@@ -12,7 +12,7 @@ define(['jquery', 'qlik', 'css!./FEI-SelectionsApplier.css', './properties'], fu
             var searchField = $element.find(('#selectionsTextboxArea-'+layout.qInfo.qId));            
             $element.find('#ClearTextButton').click(function(){
                 searchField.val('');
-                app.field(layout.field).clear();
+                // app.field(layout.field).clear();
             });
         }
     };
