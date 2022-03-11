@@ -5,6 +5,7 @@
 	"version": "1.0",
 	"icon": "extension",
 	"author": "Fady Heiba",
+	"author": "Bhavin Kumar",
 	"preview": "FEI-SelectionsApplier.png",
 	"keywords": "qlik-sense, visualization",
 	"dependencies": {
