@@ -1,3 +1,5 @@
+
+
 define(['jquery', 'qlik', 'css!./FEI-SelectionsApplier.css', './properties'], function ($, qlik, cssContent, properties) {
     return {
         definition: properties,
@@ -6,18 +8,26 @@ define(['jquery', 'qlik', 'css!./FEI-SelectionsApplier.css', './properties'], fu
             console.log(layout);
             var buttonHTMLCode = '<button name="ApplySelections" onclick="ClearFields();" id="applySelections-' + layout.qInfo.qId + '" class="applySelections">Apply ' + ((layout.field == '') ? '' : '  ' + layout.field) + '</button>';
             var buttonClearCode = '<button id="ClearTextButton" class="ClearTextButton">Clear</button>';
-            var textboxHTMLCode = '<textarea class="selections-textarea" id="selectionsTextboxArea-' + layout.qInfo.qId + '"></textarea>';
+            var textboxHTMLCode = '<textarea name="myText" onKeyUp="countLines(this)" class="selections-textarea" id="selectionsTextboxArea-' + layout.qInfo.qId + '"></textarea><div class="imei-count"><input type=text name="lineCount" id="LineCount" size="2" value="(0)"></div>';
             $element.html('<table style="height:100%;text-align: center;"><tr style="height: calc(100% - 50px);"><td style="width:100%; height: 100%;">' + textboxHTMLCode + '</td></tr><tr style="height: 50px;"><td style="width:100%; height:100%;"><table><tr><td width="70%">' + buttonHTMLCode + '</td><td>&nbsp;</td><td>' + buttonClearCode + '<td></tr></table></td></tr></table>');
             addOnActivateButtonEvent($element, layout, app);
-            var searchField = $element.find(('#selectionsTextboxArea-'+layout.qInfo.qId));            
-            $element.find('#ClearTextButton').click(function(){
+            var searchField = $element.find(('#selectionsTextboxArea-' + layout.qInfo.qId));
+            $element.find('#ClearTextButton').click(function () {
                 searchField.val('');
-                // app.field(layout.field).clear();
+                document.getElementById("LineCount").value = "(0)";
+                app.field(layout.field).clear();
             });
         }
     };
 });
 
+function countLines(theArea) {
+    var theLines = theArea.value.replace((new RegExp(".{" + theArea.cols + "}", "g")), "\n").split("\n");
+    if (theLines[theLines.length - 1] == "") theLines.length--;
+    //theArea.form.lineCount.value = theLines.length;
+    var IMEICount = document.getElementById("LineCount")
+    IMEICount.value = "(" + theLines.length + ")";
+}
 
 //Helper funciton for adding on a "qv-activate" event of button/link
 var addOnActivateButtonEvent = function ($element, layout, app) {
