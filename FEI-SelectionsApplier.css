@@ -65,3 +65,22 @@ textarea {
 .qvt-visualization.qv-object-FEI-SelectionsApplier th {
     border: none !important;
 }
+
+.imei-count {
+    position: absolute;
+    top: -27px;
+    left: 68px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.imei-count input {
+    display: inline-block;
+    width: 35px;
+    height: 20px;
+    font-size: 12px;
+    color: #333;
+    border: none;
+    text-align: left;
+}
